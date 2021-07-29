@@ -1,0 +1,43 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/download.html"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "text/html"
+        },
+        "body": "<ul><li><a href=\"text.txt\">text</a></li><li><a href=\"image.tiff\">image</a></li></ul>"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/text.txt"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Disposition": "attachment; filename=\"text.txt\""
+        },
+        "bodyFileName": "text.txt"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/image.tiff"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Disposition": "attachment; filename=\"image.tiff\""
+        },
+        "bodyFileName": "image.tiff"
+      }
+    }
+  ]
+}
