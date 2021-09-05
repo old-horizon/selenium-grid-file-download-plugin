@@ -1,10 +1,10 @@
-package com.github.old_horizon.selenium;
+package com.github.old_horizon.selenium.hub;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.MockitoAnnotations;
 
-public class DriverBaseTestCase {
+public class RestBaseTestCase {
     private AutoCloseable closeable;
 
     @BeforeEach

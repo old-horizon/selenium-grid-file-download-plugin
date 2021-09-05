@@ -1,4 +1,4 @@
-package com.github.old_horizon.selenium;
+package com.github.old_horizon.selenium.node;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

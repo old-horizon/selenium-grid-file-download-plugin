@@ -1,6 +1,5 @@
 package com.github.old_horizon.selenium.hub;
 
-import com.github.old_horizon.selenium.DriverBaseTestCase;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

@@ -8,13 +8,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hub</artifactId>
+    <artifactId>common</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>hub-driver</module>
-        <module>hub-port</module>
-        <module>hub-rest</module>
-        <module>hub-usecase</module>
+        <module>common-rest</module>
     </modules>
 </project>

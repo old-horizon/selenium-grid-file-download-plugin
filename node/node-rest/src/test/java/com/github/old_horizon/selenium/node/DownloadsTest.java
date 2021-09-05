@@ -1,7 +1,6 @@
 package com.github.old_horizon.selenium.node;
 
 import com.github.old_horizon.selenium.HttpServletResponseUtil;
-import com.github.old_horizon.selenium.RestBaseTestCase;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

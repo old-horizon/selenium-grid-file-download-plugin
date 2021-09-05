@@ -1,6 +1,5 @@
 package com.github.old_horizon.selenium.hub;
 
-import com.github.old_horizon.selenium.RestBaseTestCase;
 import com.github.old_horizon.selenium.hub.Downloads.UseCaseMethod;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

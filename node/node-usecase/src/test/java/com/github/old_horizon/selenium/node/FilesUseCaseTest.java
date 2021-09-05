@@ -1,6 +1,5 @@
 package com.github.old_horizon.selenium.node;
 
-import com.github.old_horizon.selenium.UseCaseBaseTestCase;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

@@ -18,6 +18,4 @@
         <module>node-rest</module>
         <module>node-usecase</module>
     </modules>
-
-    <name>node</name>
 </project>
