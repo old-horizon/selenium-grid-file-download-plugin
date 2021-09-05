@@ -5,17 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.old_horizon.selenium</groupId>
-    <artifactId>node-plugin</artifactId>
+    <artifactId>selenium-grid-file-download-plugin</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>driver</module>
-        <module>port</module>
-        <module>rest</module>
-        <module>usecase</module>
+        <module>hub</module>
+        <module>node</module>
     </modules>
 
-    <name>node-plugin</name>
+    <name>selenium-grid-file-download-plugin</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
