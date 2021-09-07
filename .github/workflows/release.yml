@@ -1,0 +1,26 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '8'
+          cache: 'maven'
+      - name: build
+        run: mvn -B package
+      - name: release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            hub/hub-rest/target/*.jar
+            node/node-rest/target/*.jar
