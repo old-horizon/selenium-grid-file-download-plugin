@@ -2,7 +2,7 @@
 FROM maven:3.8.1-jdk-8-slim AS builder
 COPY . /src
 WORKDIR /src
-RUN --mount=type=cache,target=/root/.m2 cd hub && mvn clean package -B
+RUN --mount=type=cache,target=/root/.m2 mvn clean package -B
 
 FROM dosel/zalenium
 COPY --from=builder /src/hub/hub-rest/target/*.jar /home/seluser/file-download-hub-plugin.jar
