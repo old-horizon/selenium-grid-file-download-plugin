@@ -8,11 +8,11 @@ import org.junit.jupiter.api.io.TempDir;
 import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.stream.Stream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -52,7 +52,7 @@ class FilesDriverTest {
         Files.createFile(dir.resolve("file2.txt"));
         Files.createDirectory(dir.resolve("subDirectory"));
 
-        assertThat(target.getFiles(), is(Arrays.asList("file1.txt", "file2.txt")));
+        assertThat(target.getFiles(), containsInAnyOrder("file1.txt", "file2.txt"));
     }
 
     @Nested
