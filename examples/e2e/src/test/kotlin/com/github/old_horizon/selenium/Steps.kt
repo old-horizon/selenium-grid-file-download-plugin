@@ -1,12 +1,15 @@
 package com.github.old_horizon.selenium
 
 import com.codeborne.selenide.Condition.exactText
+import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.`$$`
-import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.WebDriverRunner
 import com.thoughtworks.gauge.*
 import org.amshove.kluent.shouldBe
 import org.amshove.kluent.shouldBeEqualTo
+import org.openqa.selenium.logging.LogType
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -27,6 +30,32 @@ class Steps {
     }
 
     @BeforeScenario
+    fun displayScenarioName(context: ExecutionContext) {
+        """
+            <html>
+            <head>
+            <meta charset="utf-8"/>
+            </head>
+            <h2>${context.currentSpecification.name}<h2>
+            <h1>${context.currentScenario.name}</h1>
+            </html>
+        """.trimIndent().replace("\n", "")
+                .let { URLEncoder.encode(it, StandardCharsets.UTF_8).replace("+", "%20") }
+                .let { "data:text/html,$it" }
+                .let { Selenide.open(it) }
+        TimeUnit.SECONDS.sleep(1)
+    }
+
+    @AfterScenario
+    fun scenarioFailed(context: ExecutionContext) {
+        if (!context.currentScenario.isFailing) {
+            return
+        }
+        Gauge.writeMessage("WebDriver session id: ${WebDriverRunner.driver().sessionId}")
+        Gauge.writeMessage("Browser logs: \n${Selenide.getWebDriverLogs(LogType.BROWSER).joinToString("\n")}")
+    }
+
+    @BeforeScenario
     @AfterScenario
     fun cleanDownloadDirectory() {
         if (downloadDir.isInitialized()) {
@@ -36,7 +65,7 @@ class Steps {
 
     @Step("Navigate to <path>")
     fun navigate(path: String) {
-        open(path)
+        Selenide.open(path)
     }
 
     @Step("Click <name> link")
