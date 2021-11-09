@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition.exactText
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.`$$`
 import com.codeborne.selenide.WebDriverRunner
+import com.google.common.html.HtmlEscapers
 import com.thoughtworks.gauge.*
 import org.amshove.kluent.shouldBe
 import org.amshove.kluent.shouldBeEqualTo
@@ -43,16 +44,18 @@ class Steps {
                 .let { URLEncoder.encode(it, StandardCharsets.UTF_8).replace("+", "%20") }
                 .let { "data:text/html,$it" }
                 .let { Selenide.open(it) }
-        TimeUnit.SECONDS.sleep(1)
+        TimeUnit.MILLISECONDS.sleep(500)
+        Selenide.back()
     }
 
     @AfterScenario
     fun scenarioFailed(context: ExecutionContext) {
-        if (!context.currentScenario.isFailing) {
-            return
+        if (context.currentScenario.isFailing && WebDriverRunner.hasWebDriverStarted()) {
+            Gauge.writeMessage("WebDriver session id: ${WebDriverRunner.driver().sessionId}")
+            Gauge.writeMessage("Page url: ${WebDriverRunner.url()}")
+            Gauge.writeMessage("Page source: \n${HtmlEscapers.htmlEscaper().escape(WebDriverRunner.source())}")
+            Gauge.writeMessage("Browser logs: \n${Selenide.getWebDriverLogs(LogType.BROWSER).joinToString("\n")}")
         }
-        Gauge.writeMessage("WebDriver session id: ${WebDriverRunner.driver().sessionId}")
-        Gauge.writeMessage("Browser logs: \n${Selenide.getWebDriverLogs(LogType.BROWSER).joinToString("\n")}")
     }
 
     @BeforeScenario
